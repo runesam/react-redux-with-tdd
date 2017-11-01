@@ -7,7 +7,6 @@ describe('Our first test', () => {
   });
 });
 
-
 describe('Array', function () {
   describe('#indexOf()', function () {
     it('should return -1 when the value is not present', function () {
@@ -24,4 +23,4 @@ describe('Array', function () {
       assert.equal(false, Array.isArray('Test Me'));
     });
   });
-}); 
+});
