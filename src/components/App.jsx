@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './home/homePage';
 import About from './about/aboutPage';
+import Cources from './cources/courcesPage';
 import NoMatch from './404/404';
 import Header from './common/header';
 
@@ -16,6 +17,7 @@ class App extends Component {
 						<Switch>
 							<Route exact path='/' component={Home} />
 							<Route path='/about' component={About} />
+							<Route path='/cources' component={Cources} />
 							<Route path='*' component={NoMatch}/>
 						</Switch>
 					</div>
