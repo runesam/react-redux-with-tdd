@@ -1,12 +1,14 @@
 {
-    "extends": "rallycoding",
-    "env": {
-        "browser": true
-    },
-    "rules": {
-        "max-len": "off"
-    },
-    "globals": {
-
-    }
+  "extends": "rallycoding",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "max-len": "off",
+    "no-useless-constructor": "off"
+  },
+  "globals": {
+    "describe": true,
+    "it": true
+  }
 }
