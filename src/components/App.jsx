@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-
 import Home from './home/homePage';
 import About from './about/aboutPage';
 import Courses from './cources/courcesPage';
@@ -9,9 +8,9 @@ import NoMatch from './404/404';
 import Header from './common/header';
 
 const App = () => (
-	<div>
+	<div className='container'>
 		<Router>
-			<div>
+			<div className='col-xs-12'>
 				<Header />
 				<Switch>
 					<Route exact path='/' component={Home} />

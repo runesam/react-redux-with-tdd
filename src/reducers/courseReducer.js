@@ -1,4 +1,4 @@
-import { CREATE_COURSE } from './../actions/courseActions';
+import { CREATE_COURSE } from './../actions/actionTypes';
 
 function courseReducer(state = [], action) {
 	switch (action.type) {

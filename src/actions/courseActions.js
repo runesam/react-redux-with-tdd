@@ -1,9 +1,7 @@
-/* constants */
-const CREATE_COURSE = 'CREATE_COURSE';
+import { CREATE_COURSE } from './actionTypes';
 
-/* function */
 function createCourse(course) {
 	return { type: CREATE_COURSE, payload: course };
 }
 
-export { CREATE_COURSE, createCourse };
+export { createCourse };
