@@ -6,6 +6,7 @@
     "bootstrap": "^3.3.7",
     "expect.js": "^0.3.1",
     "history": "^4.7.2",
+    "jquery": "^3.2.1",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
     "react": "^16.0.0",

@@ -1,6 +1,6 @@
 import authorApi from './../api/mockAuthorApi';
 import { LOAD_AUTHORS_SUCCESS } from './actionTypes';
-import beginPromiseCall from './promisesStatusActions';
+import { beginPromiseCall } from './promisesStatusActions';
 
 function loadAuthorsSuccess(authors) {
 	return { type: LOAD_AUTHORS_SUCCESS, payload: authors };

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { success, error } from 'toastr';
 
 import CourseForm from './courseForm';
 import Loader from './../common/loader';
 
 import { loadAuthors } from './../../actions/authorActions';
+import { finishPromiseCall } from './../../actions/promisesStatusActions';
 import { loadCourses, saveCourse } from './../../actions/courseActions';
 
 class ManageCoursesPage extends Component {
@@ -45,6 +47,10 @@ class ManageCoursesPage extends Component {
 		e.preventDefault();
 		this.props.saveCourse(this.state.course).then(() => {
 			this.props.history.push('/courses');
+			success('Have fun, Your Course Been Saved!', 'Sam Ewdala Says');
+		}).catch(errorMessage => {
+			this.props.finishPromiseCall();
+			error(errorMessage);
 		});
 	}
 
@@ -52,18 +58,31 @@ class ManageCoursesPage extends Component {
 		if (this.props.numPromises) {
 			return <Loader />;
 		}
-		return <CourseForm course={this.state.course} errors={this.state.errors} onSave={this.saveCourse} onChange={this.updateCourseState} allAuthors={this.props.authors} />;
+		return (
+			<CourseForm
+				course={this.state.course}
+				errors={this.state.errors}
+				onSave={this.saveCourse}
+				onChange={this.updateCourseState}
+				allAuthors={this.props.authors}
+			/>
+		);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
 	const dummyCourse = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
 	const courseId = ownProps.match.params.courseId;
-	const authorsFormattedForDropDown = state.authors.map(author => ({ value: author.id, text: `${author.firstName} ${author.lastName}` }));
+	const authorsFormattedForDropDown = state.authors.map(author => ({
+		value: author.id,
+		text: `${author.firstName} ${author.lastName}`
+	}));
+
 	function findCourse(courses, id) {
 		const result = courses.filter(course => course.id === id)[0];
 		return result && result.title ? result : dummyCourse;
 	}
+
 	return {
 		courses: state.courses,
 		authors: authorsFormattedForDropDown,
@@ -72,4 +91,9 @@ function mapStateToProps(state, ownProps) {
 	};
 }
 
-export default withRouter(connect(mapStateToProps, { loadCourses, loadAuthors, saveCourse })(ManageCoursesPage));
+export default withRouter(connect(mapStateToProps, {
+	loadCourses,
+	loadAuthors,
+	saveCourse,
+	finishPromiseCall
+})(ManageCoursesPage));

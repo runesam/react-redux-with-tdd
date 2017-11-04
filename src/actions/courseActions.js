@@ -5,7 +5,7 @@ import {
 	CREATE_COURSE_SUCCESS
 } from './actionTypes';
 
-import beginPromiseCall from './promisesStatusActions';
+import { beginPromiseCall } from './promisesStatusActions';
 
 function loadCoursesSuccess(courses) {
 	return { type: LOAD_COURSES_SUCCESS, payload: courses };
