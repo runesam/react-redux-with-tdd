@@ -1,3 +1,66 @@
+$main: red;
+$alternative: rgb(0, 162, 255);
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(0deg);
+    border-top-color: $main;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-top-color: $alternative;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top-color: $main;
+  }
+}
+
+@mixin loaderDivMixin {
+  border-radius: 50%;
+  padding: 8px;
+  border: 2px solid transparent;
+  animation: rotate linear 3.5s infinite;
+}
+
+.loader {
+  position: absolute;
+  margin: 0;
+  width: 150px;
+  height: 150px;
+  display: block;
+  overflow: hidden;
+  will-change: transform;
+  top: calc(50vh - 100px);
+  left: calc(50vw - 100px);
+  & * {
+    will-change: transform;
+  }
+  div {
+    height: 100%;
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+  &.loader1, &.loader1 div {
+    @include loaderDivMixin;
+    border-top-color: $main;
+    border-bottom-color: $alternative;
+  }
+}
+
 .courses_container {
   h1 {
     font-weight: bolder;
@@ -10,11 +73,11 @@
   }
   table {
     width: 100%;
-    thead{
-      tr{
+    thead {
+      tr {
         th {
           border-right: 1px solid brown;
-          padding:  0 20px 10px 20px;
+          padding: 0 20px 10px 20px;
           &:last-child {
             border: 0;
           }
@@ -26,7 +89,7 @@
         border-top: 1px solid brown;
         td {
           border-right: 1px solid brown;
-          padding:  0 20px;
+          padding: 0 20px;
           &:last-child {
             padding: 5px;
             border: 0;

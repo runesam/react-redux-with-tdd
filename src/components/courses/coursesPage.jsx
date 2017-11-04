@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import './styles.css';
 
 import CoursesList from './coursesList';
+import Loader from './../common/loader';
+
 import { loadCourses } from './../../actions/courseActions';
 import { loadAuthors } from './../../actions/authorActions';
 
@@ -36,6 +38,7 @@ class CoursesPage extends Component {
 		if (this.props.courses && this.props.courses.length > 0) {
 			return <CoursesList courses={this.props.courses} deleteCourse={this.deleteCourse} />;
 		}
+		return this.props.numPromises ? <Loader /> : false;
 	}
 
 	render() {
@@ -57,9 +60,9 @@ class CoursesPage extends Component {
 function mapStateToProps(state) {
 	return {
 		courses: state.courses,
-		authors: state.authors
+		authors: state.authors,
+		numPromises: state.numPromises
 	};
 }
-
 
 export default withRouter(connect(mapStateToProps, { loadCourses, loadAuthors })(CoursesPage));

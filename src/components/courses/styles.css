@@ -1,3 +1,46 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(180deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes rotate2 {
+  0% {
+    transform: rotate(0deg);
+    border-top-color: red; }
+  50% {
+    transform: rotate(180deg);
+    border-top-color: #00a2ff; }
+  100% {
+    transform: rotate(360deg);
+    border-top-color: red; } }
+
+.loader {
+  position: absolute;
+  margin: 0;
+  width: 150px;
+  height: 150px;
+  display: block;
+  overflow: hidden;
+  will-change: transform;
+  top: calc(50vh - 100px);
+  left: calc(50vw - 100px); }
+  .loader * {
+    will-change: transform; }
+  .loader div {
+    height: 100%; }
+    .loader div:hover {
+      animation-play-state: paused; }
+  .loader.loader1, .loader.loader1 div {
+    border-radius: 50%;
+    padding: 8px;
+    border: 2px solid transparent;
+    animation: rotate linear 3.5s infinite;
+    border-top-color: red;
+    border-bottom-color: #00a2ff; }
+
 .courses_container h1 {
   font-weight: bolder;
   margin: 35px 0;

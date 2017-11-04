@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import CourseForm from './courseForm';
+import Loader from './../common/loader';
+
 import { loadAuthors } from './../../actions/authorActions';
 import { loadCourses, saveCourse } from './../../actions/courseActions';
 
@@ -47,6 +49,9 @@ class ManageCoursesPage extends Component {
 	}
 
 	render() {
+		if (this.props.numPromises) {
+			return <Loader />;
+		}
 		return <CourseForm course={this.state.course} errors={this.state.errors} onSave={this.saveCourse} onChange={this.updateCourseState} allAuthors={this.props.authors} />;
 	}
 }
@@ -55,10 +60,15 @@ function mapStateToProps(state, ownProps) {
 	const dummyCourse = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
 	const courseId = ownProps.match.params.courseId;
 	const authorsFormattedForDropDown = state.authors.map(author => ({ value: author.id, text: `${author.firstName} ${author.lastName}` }));
+	function findCourse(courses, id) {
+		const result = courses.filter(course => course.id === id)[0];
+		return result && result.title ? result : dummyCourse;
+	}
 	return {
 		courses: state.courses,
 		authors: authorsFormattedForDropDown,
-		course: courseId && state.courses.length > 0 ? state.courses.filter(course => course.id === courseId)[0] : dummyCourse
+		course: courseId && state.courses.length > 0 ? findCourse(state.courses, courseId) : dummyCourse,
+		numPromises: state.numPromises
 	};
 }
 

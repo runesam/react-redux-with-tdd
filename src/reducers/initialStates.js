@@ -1,6 +1,7 @@
 const InitialStates = {
 	authors: [],
-	courses: []
+	courses: [],
+	PromisesCallsInProgress: 0
 };
 
 export default InitialStates;
