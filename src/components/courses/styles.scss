@@ -1,9 +1,15 @@
 .courses_container {
   h1 {
     font-weight: bolder;
-    margin: 20px 0;
+    margin: 35px 0;
+    float: left;
+  }
+  & > input[type="button"] {
+    float: right;
+    margin-top: 35px;
   }
   table {
+    width: 100%;
     thead{
       tr{
         th {

@@ -18,6 +18,11 @@ const authors = [
 		id: 'dan-wahlin',
 		firstName: 'Dan',
 		lastName: 'Wahlin'
+	},
+	{
+		id: 'sam-ewdala',
+		firstName: 'Sam',
+		lastName: 'Ewdala'
 	}
 ];
 
@@ -65,8 +70,7 @@ class AuthorApi {
 	}
 
 	static deleteAuthor(authorId) {
-		return new Promise((resolve, reject) => {
-			console.log(reject);
+		return new Promise((resolve) => {
 			setTimeout(() => {
 				const indexOfAuthorToDelete = authors.findIndex(author => author.id === authorId);
 				authors.splice(indexOfAuthorToDelete, 1);

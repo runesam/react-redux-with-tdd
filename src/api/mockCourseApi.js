@@ -56,7 +56,7 @@ const generateId = (course) => replaceAll(course.title, ' ', '-');
 class CourseApi {
 	static getAllCourses() {
 		return new Promise((resolve, reject) => {
-			console.log(reject);
+			// console.log(reject);
 			setTimeout(() => {
 				resolve(Object.assign([], courses));
 			}, delay);
@@ -92,7 +92,7 @@ class CourseApi {
 
 	static deleteCourse(courseId) {
 		return new Promise((resolve, reject) => {
-			console.log(reject);
+			// console.log(reject);
 			setTimeout(() => {
 				const indexOfCourseToDelete = courses.findIndex(course => course.id === courseId);
 				courses.splice(indexOfCourseToDelete, 1);

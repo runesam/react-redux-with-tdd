@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import './styles.css';
 
 import CoursesList from './coursesList';
 import { loadCourses } from './../../actions/courseActions';
+import { loadAuthors } from './../../actions/authorActions';
 
 class CoursesPage extends Component {
+	constructor(props) {
+		super(props);
+		this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+	}
+
 	componentWillMount() {
-		this.props.loadCourses();
+		if (this.props.courses.length < 1) {
+			this.props.loadCourses();
+		}
+		if (this.props.authors.length < 1) {
+			this.props.loadAuthors();
+		}
 	}
 
 	deleteCourse(id) {
 		this.setState({ activeID: id });
 		console.log(id);
+	}
+
+	redirectToAddCoursePage() {
+		this.props.history.push('/course/create');
 	}
 
 	renderCourses() {
@@ -26,18 +42,24 @@ class CoursesPage extends Component {
 		return (
 			<div className='courses_container'>
 				<h1>Courses</h1>
+				<input
+					type='button'
+					value='Add New Course'
+					className='btn btn-primary'
+					onClick={this.redirectToAddCoursePage}
+				/>
 				{this.renderCourses()}
 			</div>
 		);
 	}
 }
 
-function mapStateToProps(state, ownProps) {
-	console.log(`Those are courses container props: ${ownProps}`);
+function mapStateToProps(state) {
 	return {
-		courses: state.courses
+		courses: state.courses,
+		authors: state.authors
 	};
 }
 
 
-export default connect(mapStateToProps, { loadCourses })(CoursesPage);
+export default withRouter(connect(mapStateToProps, { loadCourses, loadAuthors })(CoursesPage));
