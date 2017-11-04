@@ -1,7 +1,17 @@
-import { CREATE_COURSE } from './actionTypes';
+import courseApi from './../api/mockCourseApi';
+import { LOAD_COURSES_SUCCESS } from './actionTypes';
 
-function createCourse(course) {
-	return { type: CREATE_COURSE, payload: course };
+function loadCoursesSuccess(courses) {
+	return { type: LOAD_COURSES_SUCCESS, payload: courses };
+}
+function loadCourses() {
+	return function (dispatch) {
+		return courseApi.getAllCourses().then(
+			courses => dispatch(loadCoursesSuccess(courses))
+		).catch(error => {
+			throw (error);
+		});
+	};
 }
 
-export { createCourse };
+export { loadCoursesSuccess, loadCourses };

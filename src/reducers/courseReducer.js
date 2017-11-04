@@ -1,9 +1,9 @@
-import { CREATE_COURSE } from './../actions/actionTypes';
+import { LOAD_COURSES_SUCCESS } from './../actions/actionTypes';
 
 function courseReducer(state = [], action) {
 	switch (action.type) {
-		case CREATE_COURSE:
-			return [...state, action.payload];
+		case LOAD_COURSES_SUCCESS:
+			return [...state, ...action.payload];
 		default:
 			return state;
 	}

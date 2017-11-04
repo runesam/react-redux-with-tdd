@@ -1,0 +1,39 @@
+.courses_container {
+  h1 {
+    font-weight: bolder;
+    margin: 20px 0;
+  }
+  table {
+    thead{
+      tr{
+        th {
+          border-right: 1px solid brown;
+          padding:  0 20px 10px 20px;
+          &:last-child {
+            border: 0;
+          }
+        }
+      }
+    }
+    tbody {
+      tr {
+        border-top: 1px solid brown;
+        td {
+          border-right: 1px solid brown;
+          padding:  0 20px;
+          &:last-child {
+            padding: 5px;
+            border: 0;
+            button, button:focus, button:visited {
+              outline: 0;
+              border: 1px solid #c12e2a;
+            }
+          }
+        }
+        &:hover {
+          background-color: beige;
+        }
+      }
+    }
+  }
+}

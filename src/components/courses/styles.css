@@ -1,0 +1,23 @@
+.courses_container h1 {
+  font-weight: bolder;
+  margin: 20px 0; }
+
+.courses_container table thead tr th {
+  border-right: 1px solid brown;
+  padding: 0 20px 10px 20px; }
+  .courses_container table thead tr th:last-child {
+    border: 0; }
+
+.courses_container table tbody tr {
+  border-top: 1px solid brown; }
+  .courses_container table tbody tr td {
+    border-right: 1px solid brown;
+    padding: 0 20px; }
+    .courses_container table tbody tr td:last-child {
+      padding: 5px;
+      border: 0; }
+      .courses_container table tbody tr td:last-child button, .courses_container table tbody tr td:last-child button:focus, .courses_container table tbody tr td:last-child button:visited {
+        outline: 0;
+        border: 1px solid #c12e2a; }
+  .courses_container table tbody tr:hover {
+    background-color: beige; }

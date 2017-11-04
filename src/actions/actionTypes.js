@@ -1,4 +1,4 @@
 /* constants */
-const CREATE_COURSE = 'CREATE_COURSE';
+const LOAD_COURSES_SUCCESS = 'LOAD_COURSES_SUCCESS';
 
-export { CREATE_COURSE };
+export { LOAD_COURSES_SUCCESS };
