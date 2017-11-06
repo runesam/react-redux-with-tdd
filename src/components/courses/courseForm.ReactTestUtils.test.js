@@ -25,6 +25,7 @@ function setup(loading) {
 		renderer
 	};
 }
+
 describe('Course form via React Test Utils', () => {
 	it('renders form and h1', () => {
 		const { output } = setup();
