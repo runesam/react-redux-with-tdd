@@ -65,6 +65,7 @@ class ManageCoursesPage extends Component {
 				onSave={this.saveCourse}
 				onChange={this.updateCourseState}
 				allAuthors={this.props.authors}
+				loading={this.props.numPromises > 0}
 			/>
 		);
 	}
