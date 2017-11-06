@@ -10,7 +10,7 @@ import { loadAuthors } from './../../actions/authorActions';
 import { finishPromiseCall } from './../../actions/promisesStatusActions';
 import { loadCourses, saveCourse } from './../../actions/courseActions';
 
-class ManageCoursesPage extends Component {
+export class ManageCoursesPage extends Component {
 	constructor(props) {
 		super(props);
 		this.updateCourseState = this.updateCourseState.bind(this);
@@ -43,8 +43,25 @@ class ManageCoursesPage extends Component {
 		return this.setState({ course });
 	}
 
+	courseFormIsValid() {
+		this.formIsValid = true;
+		const errors = {};
+		if (this.state.course.title.length < 5) {
+			errors.title = 'Title must be at least 5 characters.';
+			this.formIsValid = false;
+		} else {
+			delete errors.title;
+			this.formIsValid = true;
+		}
+		this.setState({ errors });
+		return this.formIsValid;
+	}
+
 	saveCourse(e) {
 		e.preventDefault();
+		if (!this.courseFormIsValid()) {
+			return false;
+		}
 		this.props.saveCourse(this.state.course).then(() => {
 			this.props.history.push('/courses');
 			success('Have fun, Your Course Been Saved!', 'Sam Ewdala Says');
