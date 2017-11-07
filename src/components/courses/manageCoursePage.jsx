@@ -9,6 +9,7 @@ import Loader from './../common/loader';
 import { loadAuthors } from './../../actions/authorActions';
 import { finishPromiseCall } from './../../actions/promisesStatusActions';
 import { loadCourses, saveCourse } from './../../actions/courseActions';
+import authorsFormattedForDropDownSelector from './../../selectors/selectors';
 
 export class ManageCoursesPage extends Component {
 	constructor(props) {
@@ -91,11 +92,7 @@ export class ManageCoursesPage extends Component {
 function mapStateToProps(state, ownProps) {
 	const dummyCourse = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
 	const courseId = ownProps.match.params.courseId;
-	const authorsFormattedForDropDown = state.authors.map(author => ({
-		value: author.id,
-		text: `${author.firstName} ${author.lastName}`
-	}));
-
+	const authorsFormattedForDropDown = authorsFormattedForDropDownSelector(state.authors);
 	function findCourse(courses, id) {
 		const result = courses.filter(course => course.id === id)[0];
 		return result && result.title ? result : dummyCourse;
