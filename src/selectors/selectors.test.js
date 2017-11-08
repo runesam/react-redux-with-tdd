@@ -27,7 +27,6 @@ describe('Author Selectors', () => {
 					text: 'Sam Ewdala'
 				}
 			];
-			console.log(authorsFormattedForDropDownSelector(authors));
 			expect(authorsFormattedForDropDownSelector(authors)).to.deep.equal(expected);
 		});
 	});

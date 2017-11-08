@@ -44,6 +44,8 @@ function saveCourse(course) {
 export {
 	// success cases
 	loadCoursesSuccess,
+	updateCourseSuccess,
+	createCourseSuccess,
 	// cores
 	loadCourses,
 	saveCourse
