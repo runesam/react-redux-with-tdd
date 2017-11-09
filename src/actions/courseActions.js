@@ -1,4 +1,8 @@
+import fireBase from 'firebase';
 import courseApi from './../api/mockCourseApi';
+
+import generalUtils from './../utils/generalUtils';
+
 import {
 	LOAD_COURSES_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
@@ -6,6 +10,9 @@ import {
 } from './actionTypes';
 
 import { beginPromiseCall } from './promisesStatusActions';
+
+fireBase.initializeApp(generalUtils.fireBaseConfig);
+const DBRef = fireBase.database().ref();
 
 function loadCoursesSuccess(courses) {
 	return { type: LOAD_COURSES_SUCCESS, payload: courses };
@@ -22,11 +29,7 @@ function createCourseSuccess(course) {
 function loadCourses() {
 	return (dispatch) => {
 		dispatch(beginPromiseCall());
-		return courseApi.getAllCourses().then(
-			courses => dispatch(loadCoursesSuccess(courses))
-		).catch(error => {
-			throw (error);
-		});
+		return DBRef.child('courses').on('value', courses => dispatch(loadCoursesSuccess(courses.val())));
 	};
 }
 
