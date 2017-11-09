@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'toastr/build/toastr.min.css';
-
+// import fireBase from 'firebase';
 
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
@@ -11,7 +11,7 @@ import { ConnectedRouter } from 'react-router-redux';
 
 
 import StoreConfigure from './store/storeConfig';
-
+// import generalUtils from './utils/generalUtils';
 
 import './styles.css';
 import App from './components/App';
@@ -20,11 +20,13 @@ const history = createHistory();
 
 const Store = StoreConfigure();
 
-
+// fireBase.initializeApp(generalUtils.fireBaseConfig);
+// const DBRef = fireBase.database().ref();
 // DBRef.child('courses').set(
 // 	[
 // 		{
-// 			id: 'react-flux-building-applications',
+// 			id: 0,
+// 			path: 'react-flux-building-applications',
 // 			title: 'Building Applications in React and Flux',
 // 			watchHref: 'http://www.pluralsight.com/courses/react-flux-building-applications',
 // 			authorId: 'cory-house',
@@ -32,7 +34,8 @@ const Store = StoreConfigure();
 // 			category: 'JavaScript'
 // 		},
 // 		{
-// 			id: 'clean-code',
+// 			id: 1,
+// 			path: 'clean-code',
 // 			title: 'Clean Code: Writing Code for Humans',
 // 			watchHref: 'http://www.pluralsight.com/courses/writing-clean-code-humans',
 // 			authorId: 'cory-house',
@@ -40,7 +43,8 @@ const Store = StoreConfigure();
 // 			category: 'Software Practices'
 // 		},
 // 		{
-// 			id: 'architecture',
+// 			id: 2,
+// 			path: 'architecture',
 // 			title: 'Architecting Applications for the Real World',
 // 			watchHref: 'http://www.pluralsight.com/courses/architecting-applications-dotnet',
 // 			authorId: 'cory-house',
@@ -48,7 +52,8 @@ const Store = StoreConfigure();
 // 			category: 'Software Architecture'
 // 		},
 // 		{
-// 			id: 'career-reboot-for-developer-mind',
+// 			id: 3,
+// 			path: 'career-reboot-for-developer-mind',
 // 			title: 'Becoming an Outlier: Reprogramming the Developer Mind',
 // 			watchHref: 'http://www.pluralsight.com/courses/career-reboot-for-developer-mind',
 // 			authorId: 'cory-house',
@@ -56,7 +61,8 @@ const Store = StoreConfigure();
 // 			category: 'Career'
 // 		},
 // 		{
-// 			id: 'web-components-shadow-dom',
+// 			id: 4,
+// 			path: 'web-components-shadow-dom',
 // 			title: 'Web Component Fundamentals',
 // 			watchHref: 'http://www.pluralsight.com/courses/web-components-shadow-dom',
 // 			authorId: 'cory-house',

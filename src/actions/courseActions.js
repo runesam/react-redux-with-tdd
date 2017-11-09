@@ -35,12 +35,16 @@ function loadCourses() {
 
 function saveCourse(course) {
 	return (dispatch) => {
+		const newCourse = course;
 		dispatch(beginPromiseCall());
-		return courseApi.saveCourse(course).then(savedCourse => {
-			dispatch(course.id ? updateCourseSuccess(savedCourse) : createCourseSuccess(savedCourse));
-		}).catch(error => {
-			throw (error);
-		});
+		if (newCourse.id !== null) {
+			const courseRef = DBRef.child(`courses/${newCourse.id}`);
+			courseRef.set(newCourse);
+		} else {
+			newCourse.path = generalUtils.refactorKey(newCourse.title.toLowerCase());
+			DBRef.child('courses').push(newCourse);
+		}
+		dispatch(newCourse.id !== null ? updateCourseSuccess(newCourse) : createCourseSuccess(newCourse));
 	};
 }
 

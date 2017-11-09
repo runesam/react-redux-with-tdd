@@ -17,7 +17,7 @@ const App = () => (
 					<Route exact path='/' component={Home} />
 					<Route path='/about' component={About} />
 					<Route path='/courses' component={Courses} />
-					<Route path='/course/:courseId' component={ManageCoursePage} />
+					<Route path='/course/:coursePath' component={ManageCoursePage} />
 					<Route path='*' component={NoMatch} />
 				</Switch>
 			</div>

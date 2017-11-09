@@ -63,13 +63,13 @@ export class ManageCoursesPage extends Component {
 		if (!this.courseFormIsValid()) {
 			return false;
 		}
-		this.props.saveCourse(this.state.course).then(() => {
-			this.props.history.push('/courses');
-			success('Have fun, Your Course Been Saved!', 'Sam Ewdala Says');
-		}).catch(errorMessage => {
-			this.props.finishPromiseCall();
-			error(errorMessage);
-		});
+		// this.props.saveCourse(this.state.course).then(() => {
+		// 	this.props.history.push('/courses');
+		// 	success('Have fun, Your Course Been Saved!', 'Sam Ewdala Says');
+		// }).catch(errorMessage => {
+		// 	this.props.finishPromiseCall();
+		// 	error(errorMessage);
+		// });
 	}
 
 	render() {
@@ -91,17 +91,17 @@ export class ManageCoursesPage extends Component {
 
 function mapStateToProps(state, ownProps) {
 	const dummyCourse = { id: '', watchHref: '', title: '', authorId: '', length: '', category: '' };
-	const courseId = ownProps.match.params.courseId;
+	const coursePath = ownProps.match.params.coursePath;
 	const authorsFormattedForDropDown = authorsFormattedForDropDownSelector(state.authors);
-	function findCourse(courses, id) {
-		const result = courses.filter(course => course.id === id)[0];
+	function findCourse(courses, path) {
+		const result = courses.filter(course => course.path === path)[0];
 		return result && result.title ? result : dummyCourse;
 	}
 
 	return {
 		courses: state.courses,
 		authors: authorsFormattedForDropDown,
-		course: courseId && state.courses.length > 0 ? findCourse(state.courses, courseId) : dummyCourse,
+		course: coursePath && state.courses.length > 0 ? findCourse(state.courses, coursePath) : dummyCourse,
 		numPromises: state.numPromises
 	};
 }

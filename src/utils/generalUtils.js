@@ -8,4 +8,14 @@ module.exports = {
 		storageBucket: '',
 		messagingSenderId: '671846420991'
 	},
+	refactorKey: function (key) {
+		return key.toString()
+			.toLowerCase()
+			.replace('-', '_')
+			.replace(/\s+/g, '_')
+			.replace(/[^w-]+/g, '')
+			.replace(/__+/g, '_')
+			.replace(/^_+/, '')
+			.replace(/_+$/, '');
+	},
 };

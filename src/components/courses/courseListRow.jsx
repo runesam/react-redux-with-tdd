@@ -13,7 +13,7 @@ class CourseListRow extends Component {
 					<a href={this.props.course.watchHref} rel='noOpener noReferrer' target='_blank'>Watch</a>
 				</td>
 				<td>
-					<Link to={`/course/${this.props.course.id}`} >{this.props.course.title}</Link>
+					<Link to={`/course/${this.props.course.path}`} >{this.props.course.title}</Link>
 				</td>
 				<td>{this.props.course.authorId}</td>
 				<td>{this.props.course.category}</td>
