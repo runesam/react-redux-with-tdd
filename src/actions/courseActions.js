@@ -1,4 +1,5 @@
 import fireBase from 'firebase';
+
 import courseApi from './../api/mockCourseApi';
 
 import generalUtils from './../utils/generalUtils';
@@ -15,7 +16,8 @@ fireBase.initializeApp(generalUtils.fireBaseConfig);
 const DBRef = fireBase.database().ref();
 
 function loadCoursesSuccess(courses) {
-	return { type: LOAD_COURSES_SUCCESS, payload: courses };
+	const refactorObject = generalUtils.refactorObjectToArray(courses);
+	return { type: LOAD_COURSES_SUCCESS, payload: refactorObject };
 }
 
 function updateCourseSuccess(course) {

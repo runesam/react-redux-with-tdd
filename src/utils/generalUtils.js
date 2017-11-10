@@ -18,4 +18,7 @@ module.exports = {
 			.replace(/^_+/, '')
 			.replace(/_+$/, '');
 	},
+	refactorObjectToArray: function (obj) {
+		return Object.keys(obj).map(key => ({[key]: obj[key]}));
+	}
 };

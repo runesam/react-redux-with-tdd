@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "firebase": "^4.6.1",
+    "firebase-functions": "^0.7.2",
     "history": "^4.7.2",
     "jquery": "^3.2.1",
     "react": "^16.0.0",

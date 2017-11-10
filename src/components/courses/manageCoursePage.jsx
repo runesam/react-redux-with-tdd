@@ -63,7 +63,8 @@ export class ManageCoursesPage extends Component {
 		if (!this.courseFormIsValid()) {
 			return false;
 		}
-		// this.props.saveCourse(this.state.course).then(() => {
+		this.props.saveCourse(this.state.course);
+		// .then(() => {
 		// 	this.props.history.push('/courses');
 		// 	success('Have fun, Your Course Been Saved!', 'Sam Ewdala Says');
 		// }).catch(errorMessage => {

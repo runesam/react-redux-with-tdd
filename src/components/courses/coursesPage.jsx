@@ -17,7 +17,7 @@ class CoursesPage extends Component {
 	}
 
 	componentWillMount() {
-		if (this.props.courses.length < 1) {
+		if (Object.keys(this.props.courses).length < 1) {
 			this.props.loadCourses();
 		}
 		if (this.props.authors.length < 1) {
