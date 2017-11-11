@@ -54,5 +54,18 @@ module.exports = {
 		}).then((response) => {
 			return response.json();
 		}).catch((reason) => console.log(reason));
+	},
+	deleteFromDB: (uri) => {
+		const URL = `${module.exports.fireBaseConfig.databaseURL}/${uri}.json`;
+		return fetch(URL, {
+			method: 'DELETE',
+			// headers: {
+			// 	Accept: 'application/json',
+			// 	'Content-Type': 'application/json',
+			// },
+			// body: JSON.stringify(data)
+		}).then((response) => {
+			return response.json();
+		}).catch((reason) => console.log(reason));
 	}
 };

@@ -7,17 +7,18 @@ import './styles.css';
 import CoursesList from './coursesList';
 import Loader from './../common/loader';
 
-import { loadCourses } from './../../actions/courseActions';
+import { loadCourses, deleteCourse } from './../../actions/courseActions';
 import { loadAuthors } from './../../actions/authorActions';
 
 class CoursesPage extends Component {
 	constructor(props) {
 		super(props);
 		this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+		this.deleteCourse = this.deleteCourse.bind(this);
 	}
 
 	componentWillMount() {
-		if (Object.keys(this.props.courses).length < 1) {
+		if (this.props.courses.length < 1) {
 			this.props.loadCourses();
 		}
 		if (this.props.authors.length < 1) {
@@ -26,8 +27,7 @@ class CoursesPage extends Component {
 	}
 
 	deleteCourse(id) {
-		this.setState({ activeID: id });
-		console.log(id);
+		this.props.deleteCourse(id);
 	}
 
 	redirectToAddCoursePage() {
@@ -65,4 +65,4 @@ function mapStateToProps(state) {
 	};
 }
 
-export default withRouter(connect(mapStateToProps, { loadCourses, loadAuthors })(CoursesPage));
+export default withRouter(connect(mapStateToProps, { loadCourses, deleteCourse, loadAuthors })(CoursesPage));

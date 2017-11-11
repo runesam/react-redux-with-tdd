@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 class CourseListRow extends Component {
 	constructor(props) {
 		super(props);
-		this.deleteCourse = this.props.deleteCourse.bind(this, props.course.id);
+		this.deleteCourse = this.deleteCourse.bind(this);
+		this.state = {
+			disabled: false
+		};
+	}
+	deleteCourse() {
+		this.setState({ disabled: true });
+		this.props.deleteCourse(this.props.course.id);
 	}
 	render() {
 		return (
@@ -19,7 +26,7 @@ class CourseListRow extends Component {
 				<td>{this.props.course.category}</td>
 				<td>{this.props.course.length}</td>
 				<td>
-					<button className='btn btn-danger' onClick={this.deleteCourse}>X</button>
+					<button className='btn btn-danger' onClick={this.deleteCourse} disabled={this.state.disabled}>X</button>
 				</td>
 			</tr>
 		);

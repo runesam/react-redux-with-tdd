@@ -3,7 +3,8 @@ import generalUtils from './../utils/generalUtils';
 import {
 	LOAD_COURSES_SUCCESS,
 	UPDATE_COURSE_SUCCESS,
-	CREATE_COURSE_SUCCESS
+	CREATE_COURSE_SUCCESS,
+	DELETE_COURSE_SUCCESS
 } from './actionTypes';
 
 import { beginPromiseCall } from './promisesStatusActions';
@@ -23,9 +24,14 @@ function createCourseSuccess(course) {
 	return { type: CREATE_COURSE_SUCCESS, payload: course };
 }
 
+function deleteCourseSuccess() {
+	return { type: DELETE_COURSE_SUCCESS }
+}
+
+/* ------------------------- */
+
 function loadCourses() {
 	return (dispatch) => {
-		dispatch(beginPromiseCall());
 		return DBRef().child('courses').on('value', courses => dispatch(loadCoursesSuccess(courses.val())));
 	};
 }
@@ -48,6 +54,15 @@ function saveCourse(course) {
 				dispatch(createCourseSuccess(newCourse));
 			}).catch(error => console.log(error));
 		}
+	};
+}
+
+function deleteCourse(courseKey) {
+	return (dispatch) => {
+		dispatch(beginPromiseCall());
+		return generalUtils.deleteFromDB(`courses/${courseKey}`).then(() => {
+			dispatch(deleteCourseSuccess(courseKey));
+		}).catch(error => console.log(error));
 	};
 }
 
@@ -106,7 +121,9 @@ export {
 	loadCoursesSuccess,
 	updateCourseSuccess,
 	createCourseSuccess,
+	deleteCourseSuccess,
 	// cores
 	loadCourses,
+	deleteCourse,
 	saveCourse
 };
