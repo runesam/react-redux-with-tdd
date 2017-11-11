@@ -1,7 +1,3 @@
-import fireBase from 'firebase';
-
-import courseApi from './../api/mockCourseApi';
-
 import generalUtils from './../utils/generalUtils';
 
 import {
@@ -12,8 +8,7 @@ import {
 
 import { beginPromiseCall } from './promisesStatusActions';
 
-fireBase.initializeApp(generalUtils.fireBaseConfig);
-const DBRef = fireBase.database().ref();
+const DBRef = generalUtils.getDataBaseReference;
 
 function loadCoursesSuccess(courses) {
 	const refactorObject = generalUtils.refactorObjectToArray(courses);
@@ -31,7 +26,7 @@ function createCourseSuccess(course) {
 function loadCourses() {
 	return (dispatch) => {
 		dispatch(beginPromiseCall());
-		return DBRef.child('courses').on('value', courses => dispatch(loadCoursesSuccess(courses.val())));
+		return DBRef().child('courses').on('value', courses => dispatch(loadCoursesSuccess(courses.val())));
 	};
 }
 

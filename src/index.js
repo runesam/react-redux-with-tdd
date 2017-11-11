@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'toastr/build/toastr.min.css';
-// import fireBase from 'firebase';
+import fireBase from 'firebase';
 
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
@@ -12,7 +12,7 @@ import { ConnectedRouter } from 'react-router-redux';
 
 
 import StoreConfigure from './store/storeConfig';
-// import generalUtils from './utils/generalUtils';
+import generalUtils from './utils/generalUtils';
 
 import './styles.css';
 import App from './components/App';
@@ -20,8 +20,7 @@ import App from './components/App';
 const history = createHistory();
 
 const Store = StoreConfigure();
-
-// fireBase.initializeApp(generalUtils.fireBaseConfig);
+generalUtils.initializeFireBaseApp(fireBase);
 // const DBRef = fireBase.database().ref();
 // DBRef.child('courses').set(
 // 	{

@@ -1,5 +1,6 @@
 
 module.exports = {
+	DBRef: null,
 	fireBaseConfig: {
 		apiKey: 'AIzaSyBGb0Wk43w2uzM_QJCZiVNACZ01_oxwK00',
 		authDomain: 'react-redux-tdd.firebaseapp.com',
@@ -7,6 +8,13 @@ module.exports = {
 		projectId: 'react-redux-tdd',
 		storageBucket: '',
 		messagingSenderId: '671846420991'
+	},
+	initializeFireBaseApp: function(fireBase) {
+		fireBase.initializeApp(this.fireBaseConfig);
+		module.exports.DBRef = fireBase.database().ref();
+	},
+	getDataBaseReference: function() {
+		return module.exports.DBRef;
 	},
 	refactorKey: function (key) {
 		return key.toString()

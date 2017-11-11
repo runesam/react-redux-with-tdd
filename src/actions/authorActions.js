@@ -1,6 +1,8 @@
-import authorApi from './../api/mockAuthorApi';
 import { LOAD_AUTHORS_SUCCESS } from './actionTypes';
 import { beginPromiseCall } from './promisesStatusActions';
+import generalUtils from './../utils/generalUtils';
+
+const DBRef = generalUtils.getDataBaseReference;
 
 function loadAuthorsSuccess(authors) {
 	return { type: LOAD_AUTHORS_SUCCESS, payload: authors };
@@ -8,11 +10,7 @@ function loadAuthorsSuccess(authors) {
 function loadAuthors() {
 	return (dispatch) => {
 		dispatch(beginPromiseCall());
-		return authorApi.getAllAuthors().then(
-			Authors => dispatch(loadAuthorsSuccess(Authors))
-		).catch(error => {
-			throw (error);
-		});
+		return DBRef().child('authors').on('value', authors => dispatch(loadAuthorsSuccess(authors.val())));
 	};
 }
 
