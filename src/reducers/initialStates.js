@@ -1,6 +1,6 @@
 const InitialStates = {
 	authors: [],
-	courses: {},
+	courses: [],
 	numPromises: 0
 };
 

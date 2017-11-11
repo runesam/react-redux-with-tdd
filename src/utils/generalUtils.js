@@ -13,12 +13,38 @@ module.exports = {
 			.toLowerCase()
 			.replace('-', '_')
 			.replace(/\s+/g, '_')
-			.replace(/[^w-]+/g, '')
+			.replace(/[^\w-]+/g, '')
 			.replace(/__+/g, '_')
 			.replace(/^_+/, '')
 			.replace(/_+$/, '');
 	},
 	refactorObjectToArray: function (obj) {
-		return Object.keys(obj).map(key => ({[key]: obj[key]}));
+		return Object.keys(obj).map(key => Object.assign(obj[key], { id: key }));
+	},
+	addToDB: (uri, data) => {
+		const URL = `${module.exports.fireBaseConfig.databaseURL}/${uri}.json`;
+		return fetch(URL, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data)
+		}).then((response) => {
+			return response.json();
+		}).catch((reason) => console.log(reason));
+	},
+	updateInDB: (uri, data) => {
+		const URL = `${module.exports.fireBaseConfig.databaseURL}/${uri}.json`;
+		return fetch(URL, {
+			method: 'PATCH',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data)
+		}).then((response) => {
+			return response.json();
+		}).catch((reason) => console.log(reason));
 	}
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import 'babel-polyfill';
 import { render } from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -23,8 +24,8 @@ const Store = StoreConfigure();
 // fireBase.initializeApp(generalUtils.fireBaseConfig);
 // const DBRef = fireBase.database().ref();
 // DBRef.child('courses').set(
-// 	[
-// 		{
+// 	{
+// 		0: {
 // 			id: 0,
 // 			path: 'react-flux-building-applications',
 // 			title: 'Building Applications in React and Flux',
@@ -33,7 +34,7 @@ const Store = StoreConfigure();
 // 			length: '5:08',
 // 			category: 'JavaScript'
 // 		},
-// 		{
+// 		1: {
 // 			id: 1,
 // 			path: 'clean-code',
 // 			title: 'Clean Code: Writing Code for Humans',
@@ -42,7 +43,7 @@ const Store = StoreConfigure();
 // 			length: '3:10',
 // 			category: 'Software Practices'
 // 		},
-// 		{
+// 		2: {
 // 			id: 2,
 // 			path: 'architecture',
 // 			title: 'Architecting Applications for the Real World',
@@ -51,7 +52,7 @@ const Store = StoreConfigure();
 // 			length: '2:52',
 // 			category: 'Software Architecture'
 // 		},
-// 		{
+// 		3: {
 // 			id: 3,
 // 			path: 'career-reboot-for-developer-mind',
 // 			title: 'Becoming an Outlier: Reprogramming the Developer Mind',
@@ -60,7 +61,7 @@ const Store = StoreConfigure();
 // 			length: '2:30',
 // 			category: 'Career'
 // 		},
-// 		{
+// 		4: {
 // 			id: 4,
 // 			path: 'web-components-shadow-dom',
 // 			title: 'Web Component Fundamentals',
@@ -69,7 +70,7 @@ const Store = StoreConfigure();
 // 			length: '5:10',
 // 			category: 'HTML5'
 // 		}
-// 	]
+// 	}
 // );
 render(
 	<Provider store={Store}>
